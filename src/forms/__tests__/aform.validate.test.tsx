@@ -1,15 +1,15 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { getFormApi, mockFormInstance, clearMockFormInstance } from '@/__tests__/form';
+import { getFormApi, storeFormInstance, clearFormInstance } from '@/__tests__/form';
 import TestForm from '../aform';
 
 describe('aform 逻辑测试', () => {
   beforeAll(() => {
-    mockFormInstance();
+    storeFormInstance();
   });
 
   afterAll(() => {
-    clearMockFormInstance();
+    clearFormInstance();
   });
 
   it('表单校验', async () => {

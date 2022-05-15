@@ -16,4 +16,18 @@ describe('aform 逻辑测试', () => {
     expect(formApi.getField('input').length).toBeTruthy();
     wrapper.unmount();
   });
+
+  it('字段联动显示隐藏2', async () => {
+    const wrapper = mount(<AForm />);
+    const formApi = getFormApi(wrapper);
+    expect(formApi.getField('input').length).toBeFalsy();
+    expect(formApi.getFieldValue('select')).toBe(undefined);
+
+    formApi.setFieldsValue({ select: 'china', input: 'test' });
+
+    expect(formApi.getFieldValue('select')).toBe('china');
+    expect(formApi.getField('input').length).toBeTruthy();
+    expect(formApi.getFieldValue('input')).toBe('test');
+    wrapper.unmount();
+  });
 });
