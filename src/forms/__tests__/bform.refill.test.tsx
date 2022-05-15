@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { getFormApi } from '@/__tests__/form';
+import { sleep } from '@/__tests__/utils';
 import TestForm from '../bform';
 
 describe('bform 逻辑测试', () => {
@@ -15,11 +15,14 @@ describe('bform 逻辑测试', () => {
         }}
       />,
     );
-    const formApi = getFormApi(wrapper);
 
-    expect(formApi.getField('cascader').length).toBeTruthy();
-    expect(formApi.getFieldValue('select')).toBe('china');
-    expect(formApi.getFieldValue('cascader')).toStrictEqual(['zhejiang', 'hangzhou', 'xihu']);
+    expect(wrapper.find({ 'data-name': 'cascader' }).children().at(0).length).toBeTruthy();
+    expect(wrapper.find({ 'data-name': 'select' }).children().at(0).prop('value')).toBe('china');
+    expect(wrapper.find({ 'data-name': 'cascader' }).children().at(0).prop('value')).toStrictEqual([
+      'zhejiang',
+      'hangzhou',
+      'xihu',
+    ]);
 
     wrapper.unmount();
   });

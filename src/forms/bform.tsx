@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Form, Select, Cascader, Button } from 'antd';
+import useForm from '../useForm';
 
 const { Option } = Select;
 const formItemLayout = {
@@ -53,7 +54,8 @@ const AForm = ({
   onFinish?: (values: unknown) => void;
   dataSource?: any;
 }) => {
-  const [form] = Form.useForm();
+  const form = useForm();
+
   useEffect(() => {
     if (dataSource)
       form.setFieldsValue({
@@ -63,36 +65,30 @@ const AForm = ({
   }, [dataSource]);
 
   return (
-    <Form {...formItemLayout} form={form} onFinish={onFinish}>
-      <Form.Item
-        name="select"
-        label="Select"
-        hasFeedback
-        rules={[
-          {
-            required: true,
-            message: 'Please select your country!',
-          },
-        ]}
-      >
-        <Select placeholder="Please select a country">
-          <Option value="china">China</Option>
-          <Option value="usa">U.S.A</Option>
-        </Select>
+    <Form {...formItemLayout} onFinish={onFinish}>
+      <Form.Item label="Select" hasFeedback>
+        {form.getFieldDecorator('select', {
+          rules: [
+            {
+              required: true,
+              message: 'Please select your country!',
+            },
+          ],
+        })(
+          <Select placeholder="Please select a country">
+            <Option value="china">China</Option>
+            <Option value="usa">U.S.A</Option>
+          </Select>,
+        )}
       </Form.Item>
 
-      <Form.Item
-        label="Cascader"
-        shouldUpdate={(prevValues, currentValues) => prevValues.select !== currentValues.select}
-      >
-        {({ getFieldValue }) =>
-          getFieldValue('select') === 'china' ? (
-            <Form.Item name="cascader" noStyle initialValue={['zhejiang']}>
-              <Cascader options={options} changeOnSelect />
-            </Form.Item>
-          ) : null
-        }
-      </Form.Item>
+      {form.getFieldValue('select') === 'china' ? (
+        <Form.Item label="Cascader">
+          {form.getFieldDecorator('cascader', {
+            initialValue: ['zhejiang'],
+          })(<Cascader options={options} changeOnSelect />)}
+        </Form.Item>
+      ) : null}
 
       <Form.Item
         wrapperCol={{
