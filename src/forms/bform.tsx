@@ -47,7 +47,7 @@ const options = [
   },
 ];
 
-const AForm = ({
+const BForm = ({
   onFinish,
   dataSource,
 }: {
@@ -104,4 +104,4 @@ const AForm = ({
   );
 };
 
-export default AForm;
+export default BForm;
