@@ -1,0 +1,43 @@
+{
+  "name": "react-test-demo",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./lib/index",
+  "module": "./es/index",
+  "authors": {
+    "name": "alfred",
+    "email": "sc941203@foxmail.com"
+  },
+  "repository": "https://github.com/schifred/react-test-demo",
+  "scripts": {
+    "start": "dumi dev",
+    "test": "umi test",
+    "site": "cross-env DOCS_ENV=prod dumi build"
+  },
+  "peerDependencies": {
+    "react": "^16.14.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^13.2.0",
+    "@testing-library/react-hooks": "^8.0.0",
+    "@types/enzyme": "^3.10.12",
+    "@types/jest": "^27.5.1",
+    "@types/sinon": "^10.0.11",
+    "@umijs/plugin-test": "^1.0.2",
+    "babel-plugin-import": "^1.13.5",
+    "cross-env": "^7.0.3",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "enzyme-to-json": "^3.6.2",
+    "jest-react-hooks-shallow": "^1.5.1",
+    "sinon": "^14.0.0",
+    "typescript": "^3.3.3",
+    "umi": "^3.5.23"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@babel/runtime": "^7.17.9",
+    "antd": "^4.20.4",
+    "react": "^16.14.0"
+  }
+}
